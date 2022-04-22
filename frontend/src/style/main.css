@@ -1,0 +1,73 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(211, 219, 179);
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  line-height: 2rem;
+  text-align: start;
+  width: 30%;
+  margin: 0 40%;
+}
+
+h4, h3, h2, h1 {
+  margin: 2%;
+}
+
+.friendDetailsect {
+  text-align: start;
+  width: 46%;
+  margin: 0 auto;
+  border: 3px solid black;
+  padding: 2%;
+  border-radius: 5px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+a:hover {
+  color: grey;
+}
+
+button {
+  color: rgb(219, 201, 201);
+  background: black;
+  border: none;
+  border-radius: 5px;
+  padding: 1%;
+  margin: 4%;
+}
+button:hover {
+  background-color: rgb(80, 92, 88);
+}
+
+form {
+  text-align: start;
+  width: 90%;
+  margin: 2% 30%;
+}
+
+label {
+  margin: 4%;
+}
+
+.formlist {
+  display: grid;
+  grid-template-columns: 23% 20%;
+  align-items: baseline;
+}
+
+input[type=text] {
+  height: 80%;
+}/*# sourceMappingURL=main.css.map */
