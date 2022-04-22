@@ -18,13 +18,6 @@ const FriendList = () => {
         setFriends(sorted)
     }
 
-    // const sortByIncome = () => {
-    //     const sorted = [...friends].sort((a, b) => {
-    //       return b.verdienst - a.verdienst;
-    //     });
-    //     setFriends(sorted);
-    //   };
-
 
     return (<div>
         <AddPerson friends={friends} setFriends={setFriends} />
