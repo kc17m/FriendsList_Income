@@ -22,7 +22,7 @@ const FriendDetail = () => {
             <section className="friendDetailsect">
 
                 <h1 >{friend.firstname} {friend.lastname}</h1>
-                <h3>Birthday: {friend.birthday.slice(0, 10)}</h3>
+                <h3>Birthday: {friend.birthday.length > 12 ? friend.birthday.slice(0, 10) : friend.birthday}</h3>
                 <h3>Phone: {friend.phone}</h3>
                 <h3>Job: {friend.job}</h3>
                 <h3>Salary: $ {friend.verdienst.toLocaleString()}</h3>

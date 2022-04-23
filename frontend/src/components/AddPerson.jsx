@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { apiBaseUrl } from "../api";
 
 const AddPerson = (props) => {
 
     const [firstname, setFirstname] = useState("Lara");
+
     const [lastname, setLastname] = useState("Croft");
     const [bday, setBday] = useState("1972-10-30");
     const [phone, setPhone] = useState("123456789");
@@ -10,6 +12,55 @@ const AddPerson = (props) => {
     const [salary, setSalary] = useState(6666666);
     const [selfemp, setSelfemp] = useState(false);
     const [worked, setWorked] = useState(false);
+
+    const [error, setError] = useState("")
+
+    const handleAdd = (e) => {
+        e.preventDefault()
+        console.log("clicked?")
+
+        const postObj = {
+            firstname: firstname,
+            lastname: lastname,
+            birthday: bday,
+            phone: phone,
+            job: job,
+            verdienst: salary,
+            selfmployed: selfemp,
+            workedwith: worked
+        }
+
+        console.log(postObj)
+
+        fetch(apiBaseUrl + "/friend/new", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(postObj)
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.err) setError(data.err)
+                else {
+                    setError("")
+                    setFirstname("")
+                    setLastname("")
+                    setBday("1972-10-25")
+                    setPhone("")
+                    setJob("")
+                    setSalary(666)
+                    setSelfemp(false)
+                    setWorked(false)
+
+                    props.setFriends(data)
+                }
+
+            })
+
+
+
+    }
 
 
 
@@ -31,13 +82,15 @@ const AddPerson = (props) => {
                 <label htmlFor="job">Job:</label>
                 <input type="text" value={job} onChange={(e) => setJob(e.target.value)} name="job" placeholder="dishwasher" />
                 <label htmlFor="verdienst">Salary:</label>
-                <input type="text" value={salary} onChange={(e) => setSalary(e.target.value)} name="verdienst" placeholder="66666666" />
+                <input type="text" value={salary} onChange={(e) => setSalary(+(e.target.value))} name="verdienst" placeholder="66666666" />
                 <label htmlFor="selfemployed">Self employed ?</label>
                 <input type="checkbox" value={selfemp} onChange={(e) => setSelfemp(e.target.value)} name="selfemployed" />
                 <label htmlFor="workedwith">Worked with this person?</label>
                 <input type="checkbox" value={worked} onChange={(e) => setWorked(e.target.value)} name="workedwith" />
-                <button style={{ padding: "2%" }}>Add</button>
+                <button onClick={handleAdd} style={{ padding: "2%" }}>Add</button>
             </form>
+
+            <h4>{error}</h4>
         </div >
     );
 }
